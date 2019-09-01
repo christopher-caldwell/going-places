@@ -1,0 +1,8 @@
+luma.core==1.12.0
+luma.oled==3.3.0
+luma.emulator==1.2.0
+pygame==1.9.6
+luma.lcd>=1.0.3
+luma.led_matrix>=1.0.7
+argcomplete
+Click==7.0

@@ -1,0 +1,5 @@
+# Cached code
+__pycache__/
+
+# Keys
+config.py
