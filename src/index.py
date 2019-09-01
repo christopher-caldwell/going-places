@@ -28,27 +28,30 @@ def get_updated_commute():
     api_response = urllib.request.urlopen(request_url).read()
     returned_directions = json.loads(api_response)
     commute_time = returned_directions['routes'][0]['legs'][0]['duration']['text']
+    return commute_time
+
+
+def write_to_screen(minutes_to_wait):
     time_at_start = datetime.now()
     refresh_time = time_at_start + timedelta(minutes=1)
-    print(time_at_start)
-    print(refresh_time)
-
-
-def set_interval(function_to_run, interval_time_in_minutes):
-    e = threading.Event()
-    # Formatting variables
-    seconds_to_wait = interval_time_in_minutes * 60
-    minutes_display = 'minute' if interval_time_in_minutes == 1 else 'minutes'
-    print('Fetching fresh commute every {} {}'.format(interval_time_in_minutes,
-                                                      minutes_display))
-    # Running the function before setting interval ( on initial call )
-    function_to_run()
-    while not e.wait(seconds_to_wait):
-        function_to_run()
+    commute_time = get_updated_commute()
+    while True:
+        if (datetime.now() > refresh_time):
+            refresh_time = datetime.now() + timedelta(minutes=minutes_to_wait)
+            print('updating commute')
+            commute_time = get_updated_commute()
+        with canvas(device) as draw:
+            margin = 2
+            x_axis = 2
+            y_axis = min(device.height, 64) / 2
+            draw.text((2 * (x_axis + margin), y_axis - 20),
+                      'Time to Get Home:', fill="yellow")
+            draw.text((2 * (x_axis + 90 + margin), y_axis - 20),
+                      commute_time, fill="yellow")
 
 
 def main(minutes_to_wait):
-    set_interval(get_updated_commute, minutes_to_wait)
+    write_to_screen(minutes_to_wait)
 
 
 if __name__ == "__main__":
