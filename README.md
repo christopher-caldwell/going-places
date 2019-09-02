@@ -71,3 +71,5 @@ This value repeats twice.
 For example, `option_2_minutes_offset = 20` would have the middle screen option if you were leaving in **20 minutes**
 
 ## Running the script
+
+`python index.py --height 64 --width 256 -d pygame`
