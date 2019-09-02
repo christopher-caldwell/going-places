@@ -6,7 +6,7 @@ This script is designed to be ran from a RaspberryPi, with a 256px L x 64px W sc
 
 ## Setup
 
-Setup is designed to be as easy as possible. If anything could be easier, let me know [here](https://github.com/caldwell619/going-places/issues)
+Setup is designed to be as easy as possible. If anything could be easier, [let me know](https://github.com/caldwell619/going-places/issues)
 
 ### Keys
 
