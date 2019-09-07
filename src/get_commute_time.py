@@ -22,7 +22,7 @@ def get_updated_commute(departure_time):
     api_response = urllib.request.urlopen(
         google_api_endpoint + query_string_params).read()
     returned_directions = json.loads(api_response)
-    commute_time = returned_directions['routes'][0]['legs'][0]['duration']['text']
+    commute_time = returned_directions['routes'][0]['legs'][0]['duration_in_traffic']['text']
     return commute_time
 
 
